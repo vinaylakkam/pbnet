@@ -68,4 +68,3 @@ docker run \
 -p 3000:3000 \
 pbnet/composer-rest-server
 
-docker logs -f rest

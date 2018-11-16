@@ -37,7 +37,7 @@
 **ref**: https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial
 
 
-- `cd pbn`
+- `cd pbnet`
 
 Create a REST API
 

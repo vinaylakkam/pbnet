@@ -1,0 +1,44 @@
+/**
+ * PBN models
+ *
+ * Ref: https://hyperledger.github.io/composer/latest/reference/cto_language
+ */
+
+namespace org.uspc.pbnet
+
+participant Payer identified by payerKey {
+  o String payerKey
+  o String name
+  o String address
+  o String email
+  
+}
+
+asset Claim identified by claimId {
+  o String claimId
+  --> Payer payer
+  o String patientName optional
+  o String hospAdmissionDate optional
+  o String hospDischargeDate optional
+  o String StatementFromDate optional
+  o String StatementThruDate optional
+  o String MemberId optional
+  o String MemberLastName optional
+  o String MemberFirstName optional
+  o String CL_ProviderFacilityName optional
+  o String CL_LineNumber optional
+  o String CL_DosFrom optional
+  o String CL_DosTo optional
+  o String CL_ProcCode optional
+  o String CL_Quantity optional
+  o String CL_Diag1 optional
+}
+
+transaction ClaimTransaction {
+  o String uhid
+  --> Claim claim
+}
+
+event ClaimNotification {
+    --> Claim claim
+}

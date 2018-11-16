@@ -1,0 +1,19 @@
+/*
+* PBNET Queries
+*
+* Ref: https://hyperledger.github.io/composer/latest/reference/query-language
+*/
+
+query selectClaimTransactionByUhid {
+  description: "Select all claim transactions by patient id"
+  statement:
+      SELECT org.uspc.pbnet.ClaimTransaction
+          WHERE (uhid==_$uhid)
+}
+
+query selectClaimByPayerKey {
+  description: "Select all claims based on their payer"
+  statement:
+      SELECT org.uspc.pbnet.Claim
+          WHERE (payer.payerKey==_$payerKey)
+}

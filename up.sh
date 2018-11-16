@@ -7,6 +7,7 @@
 cd ~/pbnet
 cd ./fabric-dev-servers
 export FABRIC_VERSION=hlfv12
+export MSYS_NO_PATHCONV=1
 ./stopFabric.sh
 ./teardownFabric.sh
 ./teardownAllDocker.sh
@@ -15,13 +16,14 @@ export FABRIC_VERSION=hlfv12
 
 # Delete existing cards
 composer card delete -c PeerAdmin@pbnet
-composer card delete -c admin@pbn
+composer card delete -c admin@pbnet
 
 rm -fr ~/.composer
 
+./createPeerAdminCard.sh
 
 # Create peeradmin card; Note: this is not needed everytime. we can just use the created card
-composer card create -p connection.json -u PeerAdmin -c ./peeradmin-certs/Admin@org1.example.com-cert.pem -k ./peeradmin-certs/d348cb10a9901c0c127e7b5d53c04971108ddac3993bc9ceb9a45aa39343e44e_sk -r PeerAdmin -r ChannelAdmin
+#composer card create -p connection.json -u PeerAdmin -c ./peeradmin-certs/Admin@org1.example.com-cert.pem -k ./peeradmin-certs/d348cb10a9901c0c127e7b5d53c04971108ddac3993bc9ceb9a45aa39343e44e_sk -r PeerAdmin -r ChannelAdmin
 
 composer card import -f PeerAdmin@pbnet.card
  

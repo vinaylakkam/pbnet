@@ -77,10 +77,63 @@ fi
 
 cat << EOF > DevServer_connection.json
 {
-    "name": "hlfv1",
+    "name": "pbnet",
     "x-type": "hlfv1",
-    "x-commitTimeout": 300,
     "version": "1.0.0",
+    "peers": {
+        "peer0.org1.example.com": {
+            "url": "grpc://localhost:7051",
+	    "eventUrl": "grpc://localhost:7053"
+        },
+	"peer1.org1.example.com": {
+            "url": "grpc://localhost:8051",
+	    "eventUrl": "grpc://localhost:8053"
+        }
+    },
+    "certificateAuthorities": {
+        "ca.org1.example.com": {
+            "url": "http://localhost:7054",
+            "caName": "ca.org1.example.com"
+        }
+    },
+    "orderers": {
+        "orderer.example.com": {
+            "url": "grpc://localhost:7050"
+        }
+    },
+    "organizations": {
+        "Org1": {
+            "mspid": "Org1MSP",
+            "peers": [
+                "peer0.org1.example.com",
+                "peer1.org1.example.com"
+            ],
+            "certificateAuthorities": [
+                "ca.org1.example.com"
+            ]
+        }
+    },
+    "channels": {
+        "composerchannel": {
+            "orderers": [
+                "orderer.example.com"
+            ],
+            "peers": {
+                "peer0.org1.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "ledgerQuery": true,
+                    "eventSource": true
+                },
+                "peer1.org1.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "ledgerQuery": true,
+                    "eventSource": true
+                }
+            }
+        }
+    },
     "client": {
         "organization": "Org1",
         "connection": {
@@ -93,67 +146,30 @@ cat << EOF > DevServer_connection.json
                 "orderer": "300"
             }
         }
-    },
-    "channels": {
-        "composerchannel": {
-            "orderers": [
-                "orderer.example.com"
-            ],
-            "peers": {
-                "peer0.org1.example.com": {}
-            }
-        }
-    },
-    "organizations": {
-        "Org1": {
-            "mspid": "Org1MSP",
-            "peers": [
-                "peer0.org1.example.com"
-            ],
-            "certificateAuthorities": [
-                "ca.org1.example.com"
-            ]
-        }
-    },
-    "orderers": {
-        "orderer.example.com": {
-            "url": "grpc://${HOST}:7050"
-        }
-    },
-    "peers": {
-        "peer0.org1.example.com": {
-            "url": "grpc://${HOST}:7051"
-        }
-    },
-    "certificateAuthorities": {
-        "ca.org1.example.com": {
-            "url": "http://${HOST}:7054",
-            "caName": "ca.org1.example.com"
-        }
     }
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/d348cb10a9901c0c127e7b5d53c04971108ddac3993bc9ceb9a45aa39343e44e_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
 if [ "${NOIMPORT}" != "true" ]; then
-    CARDOUTPUT=/tmp/PeerAdmin@hlfv1.card
+    CARDOUTPUT=/tmp/PeerAdmin@pbnet.card
 else
-    CARDOUTPUT=PeerAdmin@hlfv1.card
+    CARDOUTPUT=PeerAdmin@pbnet.card
 fi
 
 "${HL_COMPOSER_CLI}"  card create -p DevServer_connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file $CARDOUTPUT
 
 if [ "${NOIMPORT}" != "true" ]; then
-    if "${HL_COMPOSER_CLI}"  card list -c PeerAdmin@hlfv1 > /dev/null; then
-        "${HL_COMPOSER_CLI}"  card delete -c PeerAdmin@hlfv1
+    if "${HL_COMPOSER_CLI}"  card list -c PeerAdmin@pbnet > /dev/null; then
+        "${HL_COMPOSER_CLI}"  card delete -c PeerAdmin@pbnet
     fi
 
-    "${HL_COMPOSER_CLI}"  card import --file /tmp/PeerAdmin@hlfv1.card 
+    "${HL_COMPOSER_CLI}"  card import --file /tmp/PeerAdmin@pbnet.card 
     "${HL_COMPOSER_CLI}"  card list
     echo "Hyperledger Composer PeerAdmin card has been imported, host of fabric specified as '${HOST}'"
-    rm /tmp/PeerAdmin@hlfv1.card
+    rm /tmp/PeerAdmin@pbnet.card
 else
     echo "Hyperledger Composer PeerAdmin card has been created, host of fabric specified as '${HOST}'"
 fi

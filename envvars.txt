@@ -1,0 +1,34 @@
+COMPOSER_CARD=restadmin@pbnet
+COMPOSER_NAMESPACES=never
+COMPOSER_AUTHENTICATION=false
+COMPOSER_MULTIUSER=false
+COMPOSER_PROVIDERS='{
+    "google": {
+        "provider": "google",
+        "module": "passport-google-oauth2",
+        "clientID": "757821795485-hui2hihqc1a0rnnm6r0tcgcfngvlhd5t.apps.googleusercontent.com",
+        "clientSecret": "xqsf90J196aw4GhyOSA1vvOh",
+        "authPath": "/auth/google",
+        "callbackURL": "/auth/google/callback",
+        "scope": "https://www.googleapis.com/auth/plus.login",
+        "successRedirect": "/",
+        "failureRedirect": "/"
+    },
+   "github": {
+	    "provider": "github",
+	    "module": "passport-github",
+	    "clientID": "0084b5a8fed442ed2243",
+	    "clientSecret": "a9b51457dba9e9e05db48b506f4d1e89f02f32f9",
+	    "authPath": "/auth/github",
+	    "callbackURL": "/auth/github/callback",
+	    "successRedirect": "/",
+	    "failureRedirect": "/"
+  }
+}'
+COMPOSER_DATASOURCES='{
+    "db": {
+        "name": "db",
+        "connector": "mongodb",
+        "host": "mongo"
+    }
+}'

@@ -83,11 +83,15 @@ cat << EOF > DevServer_connection.json
     "peers": {
         "peer0.org1.example.com": {
             "url": "grpc://localhost:7051",
-	    "eventUrl": "grpc://localhost:7053"
+	        "eventUrl": "grpc://localhost:7053"
         },
-	"peer1.org1.example.com": {
+	    "peer1.org1.example.com": {
             "url": "grpc://localhost:8051",
-	    "eventUrl": "grpc://localhost:8053"
+	        "eventUrl": "grpc://localhost:8053"
+        },
+	    "peer2.org1.example.com": {
+            "url": "grpc://localhost:9051",
+	        "eventUrl": "grpc://localhost:9053"
         }
     },
     "certificateAuthorities": {
@@ -106,7 +110,8 @@ cat << EOF > DevServer_connection.json
             "mspid": "Org1MSP",
             "peers": [
                 "peer0.org1.example.com",
-                "peer1.org1.example.com"
+                "peer1.org1.example.com",
+                "peer2.org1.example.com"
             ],
             "certificateAuthorities": [
                 "ca.org1.example.com"
@@ -126,6 +131,12 @@ cat << EOF > DevServer_connection.json
                     "eventSource": true
                 },
                 "peer1.org1.example.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "ledgerQuery": true,
+                    "eventSource": true
+                },
+                "peer2.org1.example.com": {
                     "endorsingPeer": true,
                     "chaincodeQuery": true,
                     "ledgerQuery": true,
@@ -150,7 +161,7 @@ cat << EOF > DevServer_connection.json
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/d348cb10a9901c0c127e7b5d53c04971108ddac3993bc9ceb9a45aa39343e44e_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/b320e4a3827481fc056d12de0ba6f061324db74b046ea0f05de7f14506f65c9b_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
 if [ "${NOIMPORT}" != "true" ]; then

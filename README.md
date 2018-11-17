@@ -1,4 +1,4 @@
-# pbn (Payer Blockchain Network)
+# pbnet (Payer Blockchain Network)
 
 ## Setup
 ---
@@ -37,7 +37,7 @@
 **ref**: https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial
 
 
-- `cd pbnet`
+- `cd ~./pbnet`
 
 Create a REST API
 
@@ -45,16 +45,8 @@ Create a REST API
 
 Open: http://localhost:3000 
 
-Run UI 
 
-- `cd pbn-ui`
-- `npm install`
-- `npm start`
-
-Open: http://localhost:4200 
-
-
-## Upgrade the network
+## Upgrade the business network
 ---
 **ref**: https://hyperledger.github.io/composer/latest/business-network/upgrading-bna
 
@@ -62,7 +54,7 @@ Update the version property in package.json
 
 Package the business network with new version
 
-- `composer archive create --sourceType dir --sourceName . -a pbnet@0.0.9.bna`
+- ` cd ~./pbnet/business-net && composer archive create --sourceType dir --sourceName . -a pbnet@0.0.9.bna`
 
 Install
 
@@ -76,6 +68,6 @@ Regenerate REST API
 
 - `composer-rest-server --card admin@pbnet -n never -u true -d N -w true`
 
-Regenerate UI app (from pbn directory)
+Regenerate UI app
 
 - `yo hyperledger-composer:angular`

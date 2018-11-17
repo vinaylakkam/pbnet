@@ -11,9 +11,3 @@ query selectClaimTransactionByUhid {
           WHERE (uhid==_$uhid)
 }
 
-// query selectClaimTransactionByPayerKey {
-//   description: "Select all claims based on their payer"
-//   statement:
-//       SELECT org.uspc.pbnet.ClaimTransaction
-//           WHERE (payer.payerKey==_$payerKey)
-// }

@@ -14,9 +14,9 @@ participant Payer identified by payerKey {
   
 }
 
-asset Claim identified by claimId {
+transaction ClaimTransaction {
+  o String uhid
   o String claimId
-  --> Payer payer
   o String patientName optional
   o String hospAdmissionDate optional
   o String hospDischargeDate optional
@@ -32,13 +32,10 @@ asset Claim identified by claimId {
   o String CL_ProcCode optional
   o String CL_Quantity optional
   o String CL_Diag1 optional
+
+  --> Payer payer
 }
 
-transaction ClaimTransaction {
-  o String uhid
-  --> Claim claim
-}
-
-event ClaimNotification {
-    --> Claim claim
-}
+// event ClaimNotification {
+//     --> Claim claim
+// }

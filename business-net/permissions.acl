@@ -19,14 +19,14 @@ rule EverybodyCanSubmitTransactions {
     action: ALLOW
 }
 
-rule OwnerHasFullAccessToTheirAssets {
-    description: "Allow all participants full access to their assets"
-    participant(p): "org.uspc.pbnet.Payer"
-    operation: ALL
-    resource(r): "org.uspc.pbnet.Claim"
-    condition: (r.payer.getIdentifier() === p.getIdentifier())
-    action: ALLOW
-}
+// rule OwnerHasFullAccessToTheirAssets {
+//     description: "Allow all participants full access to their assets"
+//     participant(p): "org.uspc.pbnet.Payer"
+//     operation: ALL
+//     resource(r): "org.uspc.pbnet.Claim"
+//     condition: (r.payer.getIdentifier() === p.getIdentifier())
+//     action: ALLOW
+// }
 
 rule SystemACL {
   description:  "System ACL to permit all access"

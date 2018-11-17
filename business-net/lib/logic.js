@@ -10,5 +10,6 @@
  * @param {org.uspc.pbnet.ClaimTransaction} claimTransaction
  * @transaction
  */
-function claimTransaction(tx) {
+async function claimTransaction(tx) {
+
 }

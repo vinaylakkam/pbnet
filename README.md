@@ -62,19 +62,19 @@ Update the version property in package.json
 
 Package the business network with new version
 
-- `composer archive create --sourceType dir --sourceName . -a pbn@0.0.3.bna`
+- `composer archive create --sourceType dir --sourceName . -a pbnet@0.0.9.bna`
 
 Install
 
-- `composer network install --card PeerAdmin@hlfv1 --archiveFile pbn@0.0.2.bna`
+- `composer network install --card PeerAdmin@pbnet --archiveFile pbnet@0.0.9.bna`
 
 Upgrade to the business network that was installed
 
-- `composer network upgrade -c PeerAdmin@hlfv1 -n pbn -V 0.0.2`
+- `composer network upgrade --card PeerAdmin@pbnet -n pbnet -V 0.0.9`
 
 Regenerate REST API
 
-- `composer-rest-server -c admin@pbn -n never -u true -d N -w true`
+- `composer-rest-server --card admin@pbnet -n never -u true -d N -w true`
 
 Regenerate UI app (from pbn directory)
 

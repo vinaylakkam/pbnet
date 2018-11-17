@@ -14,8 +14,8 @@ docker build -t pbnet/composer-rest-server .
 
 cd ~/pbnet
 
-source envvars.txt
-#source envvar_security.txt
+#source envvars.txt
+source envvars_security.txt
 
 echo $COMPOSER_CARD
 echo $COMPOSER_PROVIDERS

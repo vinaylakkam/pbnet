@@ -1,6 +1,7 @@
 
 See: https://hyperledger.github.io/composer/v0.19/reference/commands
 
+docker ps --format '{{.Names}}'
 
 ############################ Business network commands ############################
 ####################################################################################

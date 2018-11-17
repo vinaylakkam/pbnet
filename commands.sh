@@ -39,7 +39,7 @@ composer-rest-server -c admin@pbnet -n never -u true -d PBN -w true
 
 1. crypto-config.xml -> Count
 2. docker-compose.yaml -> update peers
-3. connection.json -> update
+3. createPeerCard script -> update
 4. Generate certs
 
 cd composer

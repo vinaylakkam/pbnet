@@ -70,4 +70,9 @@ bin/configtxgen -profile ComposerChannel -outputCreateChannelTx ./composer-chann
 
 
 
+########################### AWS #################3
+
+#Show volume usage
+
+df -hT /dev/xvda1
 

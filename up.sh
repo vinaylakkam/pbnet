@@ -29,11 +29,11 @@ composer card import -f PeerAdmin@pbnet.card
  
 
 # deploy
-composer network install -c PeerAdmin@pbnet -a ../business-net/pbnet@0.0.6.bna
+composer network install -c PeerAdmin@pbnet -a ../business-net/pbnet@0.0.7.bna
 
-composer network start -c PeerAdmin@pbnet --networkName pbnet --networkVersion 0.0.6 -A admin -S adminpw  
+composer network start -c PeerAdmin@pbnet --networkName pbnet --networkVersion 0.0.7 -A admin -S adminpw  
 
-#composer network upgrade -c PeerAdmin@pbnet --networkName pbnet --networkVersion 0.0.6 
+#composer network upgrade -c PeerAdmin@pbnet --networkName pbnet --networkVersion 0.0.7 
 
 composer card import -f admin@pbnet.card
 

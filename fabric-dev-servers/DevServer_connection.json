@@ -10,10 +10,6 @@
 	    "peer1.org1.example.com": {
             "url": "grpc://localhost:8051",
 	        "eventUrl": "grpc://localhost:8053"
-        },
-	    "peer2.org1.example.com": {
-            "url": "grpc://localhost:9051",
-	        "eventUrl": "grpc://localhost:9053"
         }
     },
     "certificateAuthorities": {
@@ -32,8 +28,7 @@
             "mspid": "Org1MSP",
             "peers": [
                 "peer0.org1.example.com",
-                "peer1.org1.example.com",
-                "peer2.org1.example.com"
+                "peer1.org1.example.com"
             ],
             "certificateAuthorities": [
                 "ca.org1.example.com"
@@ -53,12 +48,6 @@
                     "eventSource": true
                 },
                 "peer1.org1.example.com": {
-                    "endorsingPeer": true,
-                    "chaincodeQuery": true,
-                    "ledgerQuery": true,
-                    "eventSource": true
-                },
-                "peer2.org1.example.com": {
                     "endorsingPeer": true,
                     "chaincodeQuery": true,
                     "ledgerQuery": true,
